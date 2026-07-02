@@ -321,18 +321,30 @@ function qDentalPlan(open) {
   var from = { transform: open ? 'translateX(100%)' : 'translateX(0px)' };
   Q('#dmoPlanBack', from); Q('#dmoPlanPanel', from);
 }
+/* queue the filter bar's CURRENT styles so a closeLeftBar change animates */
+function qFilterBar() {
+  Q('#dmoPatSide', { width: P.closeLeftBar ? '42px' : 'calc(25% - 0px)' });
+  Q('#dmoPatCover', { opacity: P.closeLeftBar ? '1' : '0' });
+  Q('#dmoPatArrow', { rotate: P.closeLeftBar ? '180deg' : '0deg' });
+  Q('#dmoPatNewA', { opacity: P.closeLeftBar ? '0' : '1' });
+  Q('#dmoPatNewB', { opacity: P.closeLeftBar ? '1' : '0' });
+}
 window.__dmoOpenPatient = function (id) {
   var p = PATIENTS.filter(function (x) { return x.id === id; })[0] || PATIENTS[0];
   if (!P.openSelectedPatient) qPatientSheet(true);
   if (P.openDentalPlan) qDentalPlan(false);
+  if (!P.closeLeftBar) qFilterBar(); // selectPatient() collapses the filter bar
   P.selectedPatient = p; P.openSelectedPatient = true; P.openDentalPlan = false;
+  P.closeLeftBar = true;
   S.windows = [0, 0, 0, 1, 0, 0];
   renderShell();
 };
 window.__dmoOpenDental = function () {
   if (!P.openSelectedPatient) qPatientSheet(true);
   if (!P.openDentalPlan) { qDentalPlan(true); P.chartAnim = true; }
+  if (!P.closeLeftBar) qFilterBar();
   P.selectedPatient = PATIENTS[0]; P.openSelectedPatient = true; P.openDentalPlan = true;
+  P.closeLeftBar = true;
   P.dentalWindows = [1, 0, 0, 0];
   S.windows = [0, 0, 0, 1, 0, 0];
   renderShell();
@@ -754,17 +766,12 @@ window.__dmoClick = function (act, t, e) {
       if (P.choosing) Q('[data-drop="' + P.choosing + '"]', { maxHeight: '200px' });
       P.filters = { lastName: '', firstName: '', number: '', email: '', inssurance: '--', type: '--', sexe: '--' }; P.choosing = null; renderShell(); return;
     case 'patToggleBar':
-      Q('#dmoPatSide', { width: P.closeLeftBar ? '42px' : 'calc(25% - 0px)' });
-      Q('#dmoPatCover', { opacity: P.closeLeftBar ? '1' : '0' });
-      Q('#dmoPatArrow', { rotate: P.closeLeftBar ? '180deg' : '0deg' });
-      Q('#dmoPatNewA', { opacity: P.closeLeftBar ? '0' : '1' });
-      Q('#dmoPatNewB', { opacity: P.closeLeftBar ? '1' : '0' });
+      qFilterBar();
       P.closeLeftBar = !P.closeLeftBar;
-      if (P.closeLeftBar) {
-        if (P.openDentalPlan) qDentalPlan(false);
-        if (P.openSelectedPatient) qPatientSheet(false);
-        P.openDentalPlan = false; P.openSelectedPatient = false;
-      }
+      // FiltersBar arrow: setCloseLeftBar(!closeLeftBar); goBackDental(); closePatient()
+      if (P.openDentalPlan) qDentalPlan(false);
+      if (P.openSelectedPatient) qPatientSheet(false);
+      P.openDentalPlan = false; P.openSelectedPatient = false;
       renderShell(); return;
     case 'patNew': warn('La fenêtre « Nouveau patient » s’ouvre dans l’application complète.', 'rgb(0, 149, 212)'); return;
     case 'patExport': warn('Export Excel disponible dans l’application complète.', 'rgb(0, 149, 212)'); return;

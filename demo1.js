@@ -362,7 +362,7 @@ function renderShell() {
     (S.openActingDrs || !S.closeBar ? '<div data-act="closeMenus" style="position:absolute;width:100%;height:100%;z-index:12;"></div>' : '') +
     // sidebar
     '<div id="dmoSidebar" style="position:absolute;transition:0.4s;height:100%;width:25%;max-width:355px;background-color:rgb(44, 79, 94);left:0;transform:translateX(' + (S.closeBar ? '-100%' : '0') + ');top:0;z-index:12;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;">' +
-      '<img id="dmoSideLogo" src="assets/logo.svg" style="width:70%;height:auto;position:absolute;top:2.5%;z-index:2;opacity:' + (S.closeBar ? 0 : 1) + ';transition:opacity 0.3s;">' +
+      '<img id="dmoSideLogo" src="assets/logo.svg" style="width:62%;height:auto;position:absolute;top:66px;z-index:2;opacity:' + (S.closeBar ? 0 : 1) + ';transition:opacity 0.3s;">' +
       '<img id="dmoSideArrow" data-act="toggleBar" src="' + A + 'sidebar/arrow.svg" style="width:35px;height:auto;cursor:pointer;position:absolute;top:10px;right:10px;z-index:2;transition:rotate 0.3s;rotate:' + (S.closeBar ? '180deg' : '0deg') + ';">' +
       '<h1 style="position:absolute;top:137px;color:white;font-family:Rubik;font-weight:100;margin:0;font-size:19px;">Dr. ' + esc(S.actingDr.name) + '</h1>' +
       '<div style="height:34%;max-height:270px;width:100%;background:linear-gradient(to bottom, rgb(33, 126, 156), rgb(23, 189, 244));border-bottom-right-radius:30%;"></div>' +
