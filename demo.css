@@ -1,0 +1,151 @@
+/* ============================================================
+   Dentimo interactive demo — styles transcribed from the app
+   (src/style/style.css + index.css). Scoped to #dentimoDemo.
+   ============================================================ */
+
+/* ---- demo shell (site-side) ---- */
+.demo-shell{position:relative;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid rgba(4,39,54,.35);box-shadow:0 40px 80px -30px rgba(6,26,33,.55);background:#08181f}
+.demo-shell .demo-stage{position:relative;overflow:hidden}
+.demo-fs-btn{position:absolute;z-index:40;bottom:12px;right:12px;display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(12,30,38,.62);backdrop-filter:blur(6px);color:#fff;font-family:"Rubik";font-size:.8rem;font-weight:500;cursor:pointer;transition:.18s}
+.demo-fs-btn:hover{background:rgb(23,189,244);border-color:rgb(23,189,244)}
+.demo-shell:fullscreen{border-radius:0}
+.demo-shell:fullscreen .demo-stage{height:100%}
+
+/* ---- app root : restore the app's environment ---- */
+#dentimoDemo{width:1366px;height:768px;position:absolute;top:0;left:0;transform-origin:0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;-webkit-font-smoothing:antialiased}
+#dentimoDemo, #dentimoDemo *{box-sizing:content-box;outline:none}
+#dentimoDemo h1{display:block;font-size:2em;margin:0.67em 0;font-weight:bold;line-height:1.15;letter-spacing:normal;color:#000}
+#dentimoDemo h2{display:block;font-size:1.5em;margin:0.83em 0;font-weight:bold;line-height:1.15;color:#000}
+#dentimoDemo h3{display:block;font-size:1.17em;margin:1em 0;font-weight:bold;line-height:1.15;color:#000}
+#dentimoDemo p{display:block;margin:1em 0;line-height:1.35}
+#dentimoDemo input,#dentimoDemo textarea{font-size:13.3px;line-height:normal;box-sizing:content-box;background:#fff;color:#000}
+#dentimoDemo img{max-width:none}
+#dentimoDemo ::-webkit-scrollbar{display:none}
+#dentimoDemo *{-ms-overflow-style:none;scrollbar-width:none}
+#dentimoDemo{
+  --locked-color: rgb(138,138,138);
+  --unlocked-color: rgb(23,189,244);
+}
+#dentimoDemo .noselect{user-select:none;-webkit-user-select:none}
+
+/* ---- window chrome ---- */
+#dentimoDemo .close, #dentimoDemo .min{transition:background-color 0.3s}
+#dentimoDemo .close:hover{background-color:rgb(255,0,36)}
+#dentimoDemo .main-window .min:hover{background-color:rgb(84,113,124)}
+
+/* ---- top tabs (windows) ---- */
+#dentimoDemo .windows{position:relative;display:flex;justify-content:center;align-items:center}
+#dentimoDemo .windows .drc-90{width:calc(100% + 18px);height:12px;background-color:rgb(242,246,248);position:absolute;box-sizing:border-box;bottom:-8px;z-index:1;border-radius:7px}
+#dentimoDemo .windows .drc-90::after{content:'';width:10px;height:12px;background-color:rgb(44,79,94);position:absolute;left:-1px;top:0;box-sizing:border-box;z-index:1;border-radius:7px 0px 7px 7px}
+#dentimoDemo .windows .drc-90::before{content:'';width:10px;height:12px;background-color:rgb(44,79,94);position:absolute;right:-1px;top:0;box-sizing:border-box;z-index:1;border-radius:0px 7px 7px 7px}
+#dentimoDemo .windows:hover > .drc-91{opacity:1}
+#dentimoDemo .drc-91{width:calc(100% + 20px);height:12px;background-color:rgb(84,113,124);position:absolute;box-sizing:border-box;bottom:-8px;z-index:2;opacity:0;transition:0.3s;border-radius:7px}
+#dentimoDemo .drc-91::after{content:'';width:10px;height:12px;background-color:rgb(44,79,94);position:absolute;left:0;top:0;box-sizing:border-box;z-index:2;border-radius:7px 0px 7px 7px}
+#dentimoDemo .drc-91::before{content:'';width:10px;height:12px;background-color:rgb(44,79,94);position:absolute;right:0;top:0;box-sizing:border-box;z-index:2;border-radius:0px 7px 7px 7px}
+#dentimoDemo .windows .drc-92{width:calc(100% + 18px);height:12px;background-color:rgb(255,255,255);position:absolute;box-sizing:border-box;bottom:-8px;z-index:1;border-radius:7px}
+#dentimoDemo .windows .drc-92::after{content:'';width:10px;height:12px;background-color:rgb(242,246,248);position:absolute;left:-1px;top:0;box-sizing:border-box;z-index:1;border-radius:7px 0px 7px 7px}
+#dentimoDemo .windows .drc-92::before{content:'';width:10px;height:12px;background-color:rgb(242,246,248);position:absolute;right:-1px;top:0;box-sizing:border-box;z-index:1;border-radius:0px 7px 7px 7px}
+#dentimoDemo .windows:hover > .drc-93{opacity:1}
+#dentimoDemo .drc-93{width:calc(100% + 20px);height:12px;background-color:rgb(84,113,124);position:absolute;box-sizing:border-box;bottom:-8px;z-index:2;opacity:0;transition:0.3s;border-radius:7px}
+#dentimoDemo .drc-93::after{content:'';width:10px;height:12px;background-color:rgb(242,246,248);position:absolute;left:0;top:0;box-sizing:border-box;z-index:2;border-radius:7px 0px 7px 7px}
+#dentimoDemo .drc-93::before{content:'';width:10px;height:12px;background-color:rgb(242,246,248);position:absolute;right:0;top:0;box-sizing:border-box;z-index:2;border-radius:0px 7px 7px 7px}
+
+#dentimoDemo .view-port{position:absolute;width:100%;height:calc(100% - 41px);top:41px;left:0;background-color:white}
+
+/* ---- HomePage ---- */
+#dentimoDemo .tf-62{width:calc(50% - 25px);height:calc(100% - 20px);background-color:rgb(255,255,255);border-radius:7px;box-sizing:border-box;box-shadow:0px 2px 3px rgb(201,201,201);position:relative}
+#dentimoDemo .pf-39{width:calc(100% - 10px);height:calc(40% - 10px);background-color:rgb(44,79,94);border-radius:7px;box-sizing:border-box;display:flex;flex-direction:row;align-items:center;justify-content:center;padding:0px 20px}
+#dentimoDemo .wh-12{width:calc(100% - 20px);height:calc(100% - 50px);margin:10px}
+#dentimoDemo .us-23{width:calc(100% - 40px);height:calc(100% - 10px);border-radius:7px;box-sizing:border-box;box-shadow:0px 2px 3px rgb(201,201,201);display:flex;background-color:rgb(255,255,255);margin-left:20px;position:relative;flex-direction:column;align-items:center;justify-content:start;overflow:hidden}
+#dentimoDemo .si-30:hover{background-color:white !important;color:rgb(23,189,244) !important}
+#dentimoDemo .os-38,#dentimoDemo .os-39,#dentimoDemo .os-40,#dentimoDemo .os-41{transition:0.3s;position:relative}
+#dentimoDemo .os-38:hover{border:2px solid rgb(0,149,212) !important;background-color:rgba(0,148,212,0.075)}
+#dentimoDemo .os-38:hover > img{opacity:1 !important}
+#dentimoDemo .os-39:hover{border:2px solid rgb(255,179,0) !important;background-color:rgba(255,179,0,0.075) !important}
+#dentimoDemo .os-39:hover > img{opacity:1 !important}
+#dentimoDemo .os-41:hover{border:2px solid rgb(23,189,244) !important;background-color:rgba(23,189,244,0.075) !important}
+#dentimoDemo .os-41:hover > img{opacity:1 !important}
+#dentimoDemo .os-40:hover{border:2px solid rgb(8,230,37) !important;background-color:rgba(8,230,37,0.075) !important}
+#dentimoDemo .os-40:hover > img{opacity:1 !important}
+#dentimoDemo .os-38:hover > .next-01,#dentimoDemo .os-38:hover > .next-02,
+#dentimoDemo .os-39:hover > .next-01,#dentimoDemo .os-39:hover > .next-02,
+#dentimoDemo .os-40:hover > .next-01,#dentimoDemo .os-40:hover > .next-02,
+#dentimoDemo .os-41:hover > .next-01,#dentimoDemo .os-41:hover > .next-02{display:block !important}
+#dentimoDemo .next-01{display:none;top:-2px;animation:dmoUpOpacity 0.3s;border-radius:5px 5px 0 0;transform:translateY(-100%)}
+#dentimoDemo .next-02{display:none;bottom:-2px;animation:dmoDownOpacity 0.3s;border-radius:0 0 5px 5px;transform:translateY(100%)}
+@keyframes dmoUpOpacity{from{opacity:0;transform:translateY(0%)}to{opacity:1;transform:translateY(-100%)}}
+@keyframes dmoDownOpacity{from{opacity:0;transform:translateY(0%)}to{opacity:1;transform:translateY(100%)}}
+#dentimoDemo .dn-65::placeholder{color:rgba(0,149,212,0.6)}
+#dentimoDemo .pv-41,#dentimoDemo .pv-41 img{transition:0.3s}
+#dentimoDemo .pv-41:hover{outline-color:rgb(23,189,244) !important}
+#dentimoDemo .pv-41:hover > img{opacity:1 !important}
+#dentimoDemo .hy-92{transition:0.3s}
+#dentimoDemo .hy-92:hover{background-color:rgba(255,255,255,0.17) !important}
+#dentimoDemo .gn-59:hover{color:rgb(0,148,212) !important;background-color:rgba(23,189,244,0.071)}
+#dentimoDemo .zk-48:hover{opacity:1 !important}
+#dentimoDemo .bar-01{transition:background-color 0.3s}
+#dentimoDemo .bar-01:hover{background-color:rgba(255,255,255,0.2) !important}
+
+/* ---- Appointments (calendar) ---- */
+#dentimoDemo .jd-62{transition:0.3s}
+#dentimoDemo .jd-62:hover{color:rgb(23,189,244) !important;background-color:white !important}
+#dentimoDemo .ud-43{transition:0.3s;cursor:pointer}
+#dentimoDemo .ud-43:hover{color:rgb(23,189,244) !important;border-left-color:rgb(23,189,244) !important}
+#dentimoDemo .dh-78,#dentimoDemo .dh-78 p{transition:0.3s}
+#dentimoDemo .dh-78:hover > p{color:rgb(23,189,244) !important}
+#dentimoDemo .dh-78:hover{background-color:rgb(0,0,0) !important}
+#dentimoDemo .sd-78:hover > img{opacity:1 !important}
+#dentimoDemo .cu-78{transition:0.5s;cursor:default}
+#dentimoDemo .cu-78:hover{z-index:3 !important;min-height:82px !important;box-shadow:0px 5px 10px rgba(0,0,0,0.279);width:max-content !important;max-width:600px !important}
+#dentimoDemo .gi-30{transition:0.3s}
+#dentimoDemo .cu-78:hover > .gi-30{max-width:600px !important;width:max-content !important}
+#dentimoDemo .fi-82{transition:0.3s;cursor:pointer}
+#dentimoDemo .fi-82:hover{background-color:rgba(23,189,244,0.112) !important}
+#dentimoDemo .oh-83,#dentimoDemo .vo-20{transition:0.3s}
+#dentimoDemo .vo-20:hover{z-index:3 !important}
+#dentimoDemo .oh-83{opacity:0;pointer-events:none}
+#dentimoDemo .vo-20:hover > .oh-83,#dentimoDemo .cu-78:hover > .oh-83{transform:translateY(100%);opacity:1;pointer-events:auto;box-shadow:0px 3px 5px rgba(0,0,0,0.211)}
+#dentimoDemo .oh-84{opacity:0;transition:0.3s;pointer-events:none}
+#dentimoDemo .vo-20:hover > .oh-84,#dentimoDemo .cu-78:hover > .oh-84{transform:translateX(calc(100% - 2px));opacity:1;pointer-events:auto;box-shadow:0px 3px 5px rgba(0,0,0,0.211)}
+#dentimoDemo .cx-37{transition:0.6s}
+#dentimoDemo .cx-37:hover{rotate:180deg}
+#dentimoDemo .ar-03{transition:0.3s}
+#dentimoDemo .ar-03:hover{opacity:1 !important}
+#dentimoDemo .patname-01:hover{color:rgb(23,189,244) !important}
+
+/* ---- DrAppointments ---- */
+#dentimoDemo .nf-95:hover ~ .ln-32{max-width:400px !important;max-height:400px !important;opacity:1 !important}
+
+/* ---- Patients ---- */
+#dentimoDemo .ft-91{transition:0.3s}
+#dentimoDemo .ft-91:hover{background-color:rgba(23,189,244,0.1) !important}
+#dentimoDemo .ft-91:hover p{transition:0.3s}
+#dentimoDemo .ft-91:hover > .fname{color:rgb(0,149,212) !important}
+#dentimoDemo .ft-91:hover > .lname{color:rgb(0,149,212) !important}
+#dentimoDemo .ft-91 .info{transition:0.3s}
+#dentimoDemo .ft-91:hover > .info{background-color:rgba(23,189,244,0.1)}
+#dentimoDemo .nh-28 .after-lol{position:absolute;width:15%;height:300%;background-color:white;left:-50%;top:-100%;rotate:45deg;transition:1s}
+#dentimoDemo .nh-28:hover > .after-lol{left:150% !important}
+#dentimoDemo .dd-43{position:absolute;bottom:-7px;height:14px;width:100%;background-color:rgb(44,79,94);z-index:0}
+#dentimoDemo .jl-38{transition:0.3s}
+#dentimoDemo .jl-38:hover{color:rgb(0,148,212) !important}
+#dentimoDemo .kw-15{animation:dmoGoDown 0.1s linear;bottom:-30px}
+#dentimoDemo .kw-16{animation:dmoGoDown1 0.1s linear}
+@keyframes dmoGoDown{0%{bottom:0px;opacity:0}70%{opacity:0.3}100%{bottom:-30px;opacity:1}}
+@keyframes dmoGoDown1{0%{right:10%;opacity:0}70%{opacity:0.3}100%{right:50%;opacity:1}}
+#dentimoDemo .le-21:hover > div > .le-21-hour{opacity:0}
+#dentimoDemo .le-21:hover > div > .le-21-link{opacity:1 !important}
+#dentimoDemo .sl-2u:hover > div{right:-30px !important}
+
+/* ---- dental chart ---- */
+#dentimoDemo .tooth_number{transition:0.3s;font-size:16.9px;color:#ffffff;font-family:'Rubik';margin:5px 0;user-select:none}
+#dentimoDemo .tooth_holder:hover > .tooth_number{color:#00ff5a !important}
+#dentimoDemo .tooth_holder.selected > .tooth_number{color:#00ff5a !important}
+#dentimoDemo .load-in{animation:dmoLoadIn 1s}
+@keyframes dmoLoadIn{0%{opacity:0}70%{opacity:0}100%{opacity:1}}
+
+/* ---- warnings / loading ---- */
+#dentimoDemo .warning-01{animation:dmoWarning 4s}
+@keyframes dmoWarning{0%{top:0;opacity:0}10%{top:30px;opacity:1}90%{opacity:1;top:30px}100%{top:80px;opacity:0}}
+@keyframes dmoRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+#dentimoDemo select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:none}
